@@ -330,10 +330,9 @@
         const deadline = new Date(result.deadline);
         const deadlineStr = deadline.toLocaleDateString('ar-SA', {
           weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-        }) + ' - الساعة 12:30 ظهراً';
+        }) + ' -  من الساعة 8:00 صباحًا الى الساعة 12:30 ظهرًا';
 
         document.getElementById('successMsg').innerHTML = `
-          أنت المسجل رقم <strong>${result.slot}</strong> من أصل 20<br><br>
           يرجى الحضور للمدرسة لإتمام الدفع بحلول:<br>
           <strong>${deadlineStr}</strong><br><br>
           ساعات الدفع: 8 صباحاً - 12:30 ظهراً (الأحد - الخميس)<br>
