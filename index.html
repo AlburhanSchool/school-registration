@@ -139,15 +139,20 @@
 
   async function updateSlots() {
     try {
-      const res = await fetch(SCRIPT_URL + '?action=getSlots');
-      const data = await res.json();
+      const res = await fetch(SCRIPT_URL + '?action=getSlots', {
+        redirect: 'follow'
+      });
+      const text = await res.text();
+      const data = JSON.parse(text);
       document.getElementById('slotsCount').textContent = data.availableSlots;
 
       if (data.availableSlots <= 0) {
         document.getElementById('registerBtn').style.display = 'none';
         document.getElementById('fullNotice').style.display = 'block';
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   updateSlots();
