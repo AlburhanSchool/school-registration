@@ -324,32 +324,19 @@
       const result = await response.json();
 
       if (result.success) {
-        document.getElementById('successBox').style.display = 'block';
-        document.getElementById('errorBox').style.display = 'none';
-
         const deadline = new Date(result.deadline);
-        const deadlineStr = deadline.toLocaleDateString('ar-SA', {
-          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-        }) + ' -  من الساعة 8:00 صباحًا الى الساعة 12:30 ظهرًا';
+const deadlineStr = deadline.toLocaleDateString('ar-SA', {
+  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+}) + ' - من الساعة 8:00 صباحاً الى الساعة 12:30 ظهراً';
 
-        const now = new Date();
+const now = new Date();
 const hour = now.getHours();
-const day = now.getDay(); // 0=أحد، 4=خميس
+const day = now.getDay();
 const isWorkDay = day >= 0 && day <= 4;
 const isWorkHour = hour >= 8 && (hour < 12 || (hour === 12 && now.getMinutes() <= 30));
-const duringWorkTime = isWorkDay && isWorkHour;
+const during = isWorkDay && isWorkHour;
 
-const msg = duringWorkTime
-  ? `يمكنك الحضور والدفع <strong>اليوم أو غداً</strong> خلال ساعات العمل`
-  : `يرجى الحضور للمدرسة لإتمام الدفع بحلول:<br><strong>${deadlineStr}</strong>`;
-
-document.getElementById('successMsg').innerHTML = `
-  ${msg}<br><br>
-  ساعات العمل: 8:00 صباحاً - 12:30 ظهراً (الأحد - الخميس)<br>
-  ⚠️ سيتم إلغاء حجزك تلقائياً إن لم يتم الدفع في الموعد
-`;
-
-        btn.textContent = 'تم التسجيل ✓';
+window.location.href = `message.html?during=${during}&deadline=${encodeURIComponent(deadlineStr)}`;
       } else {
         showError(result.message);
         btn.disabled = false;
