@@ -80,8 +80,7 @@
   const deadline = params.get('deadline');
 
   const msg = during
-    ? `يمكنك الحضور والدفع <strong>اليوم أو غداً</strong> خلال ساعات العمل`
-    : `يرجى الحضور للمدرسة لإتمام الدفع بحلول:<br><strong>${deadline}</strong>`;
+    ? `يرجى الحضور لإستكمال التسجيل ودفع الرسوم الدراسية <strong>اليوم أو غداً</strong> خلال ساعات العمل`;
 
   document.getElementById('msg').innerHTML = `
     ${msg}<br><br>
