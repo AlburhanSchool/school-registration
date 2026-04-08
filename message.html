@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تم الحجز</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      min-height: 100vh;
+      background: #f0f4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .box {
+      background: white;
+      border-radius: 20px;
+      padding: 36px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 60px;
+      margin-bottom: 16px;
+    }
+
+    .success-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #155724;
+      margin-bottom: 20px;
+    }
+
+    .success-msg {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.8;
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 24px;
+      background: #1a1a2e;
+      color: white;
+      border-radius: 12px;
+      padding: 12px 30px;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .back-btn:hover { background: #2d2d4e; }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <div class="success-icon">✅</div>
+  <div class="success-title">تم الحجز بنجاح!</div>
+  <div class="success-msg" id="msg">جاري التحميل...</div>
+  <a href="index.html" class="back-btn">العودة للإعلان</a>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const during = params.get('during') === 'true';
+  const deadline = params.get('deadline');
+
+  const msg = during
+    ? `يمكنك الحضور والدفع <strong>اليوم أو غداً</strong> خلال ساعات العمل`
+    : `يرجى الحضور للمدرسة لإتمام الدفع بحلول:<br><strong>${deadline}</strong>`;
+
+  document.getElementById('msg').innerHTML = `
+    ${msg}<br><br>
+    ساعات العمل: 8:00 صباحاً - 12:30 ظهراً (الأحد - الخميس)<br>
+    ⚠️ سيتم إلغاء حجزك تلقائياً إن لم يتم الدفع في الموعد
+  `;
+</script>
+
+</body>
+</html>
