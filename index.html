@@ -7,124 +7,122 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-   body {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  min-height: 100vh;
-  background: #1a1a2e;
-  background-image: url('poster.jpeg');
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-    /* ===== العداد - زاوية يسار عليا ===== */
-   .counter-box {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: transparent;
-  text-align: center;
-  z-index: 1000;
-  min-width: 160px;
-}
+    .poster-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 430px;
+    }
 
-.slots-number {
-  font-size: 72px;
-  font-weight: 900;
-  color: #e8275a;
-  line-height: 1;
-  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
-}
+    .poster-wrapper img {
+      width: 100%;
+      display: block;
+    }
 
-.slots-label {
-  font-size: 13px;
-  color: #2d5f7a;
-  font-weight: 600;
-  margin-top: 4px;
-  background: rgba(255,255,255,0.7);
-  border-radius: 20px;
-  padding: 3px 10px;
-}
+    /* ===== العداد فوق رقم 20 ===== */
+    .slots-number {
+      font-size: 64px;
+      font-weight: 900;
+      color: #e8275a;
+      line-height: 1;
+    }
 
-.register-btn {
-  background: #f5c842;
-  color: #2d5f7a;
-  border: none;
-  border-radius: 50px;
-  padding: 16px 50px;
-  font-size: 22px;
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
-  font-family: inherit;
-  text-decoration: none;
-  display: inline-block;
-}
-  
-.register-btn-container {
-  position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  text-align: center;
-}
-    
-.register-btn:hover {
-  transform: scale(1.05);
-}
-    .full-notice {
-      position: fixed;
-      bottom: 40px;
+    .slots-label {
+      font-size: 11px;
+      color: #2d5f7a;
+      font-weight: 700;
+      background: rgba(255,255,255,0.8);
+      border-radius: 20px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    /* ===== زر التسجيل ===== */
+    .register-btn-container {
+      position: absolute;
+      bottom: 10%;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255,0,0,0.8);
+      width: 80%;
+      text-align: center;
+    }
+
+    .register-btn {
+      background: #f5c842;
+      color: #2d5f7a;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 0;
+      width: 100%;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .register-btn:hover { transform: scale(1.03); }
+
+    .full-notice {
+      background: rgba(255,0,0,0.85);
       color: white;
       border-radius: 50px;
-      padding: 18px 60px;
+      padding: 14px 0;
+      width: 100%;
       font-size: 18px;
       font-weight: bold;
       display: none;
-      z-index: 1000;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-<!-- العداد -->
-<div class="counter-box">
-  <div class="slots-number" id="slotsCount">--</div>
-  <div class="slots-label">مقعد من أصل 20</div>
-</div>
+<div class="poster-wrapper">
+  <img src="poster.jpeg" alt="إعلان التسجيل">
 
-<!-- زر التسجيل -->
-<div class="register-btn-container">
-  <a href="form.html" class="register-btn" id="registerBtn">
-    🎒 سجل الآن واحجز مقعدك
-  </a>
-  <div class="full-notice" id="fullNotice">
-    🎉 امتلأت المقاعد!
+  <!-- العداد -->
+    <div class="slots-number" id="slotsCount">--</div>
+    <div class="slots-label">مقعد من أصل 20</div>
+  </div>
+
+  <!-- زر التسجيل -->
+  <div class="register-btn-container">
+    <a href="form.html" class="register-btn" id="registerBtn">
+      🎒 سجل الآن واحجز مقعدك
+    </a>
+    <div class="full-notice" id="fullNotice">
+      🎉 امتلأت المقاعد!
+    </div>
   </div>
 </div>
 
 <script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwznftn9DcLhCURCrFwVh3-_7_K41JxbCTLskjL2HJIP6MxrmlLZkKZIGErvq32A7w/exec';
-  
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrjlyWRkogKOlapovY-tgAUJEm1VH5tjY9LcHigSMDClyEcNnungm1tI5ZUt2_FfoQVQ/exec';
 
   function updateSlots() {
-  const script = document.createElement('script');
-  window.handleSlots = function(data) {
-    document.getElementById('slotsCount').textContent = data.availableSlots;
-    if (data.availableSlots <= 0) {
-      document.getElementById('registerBtn').style.display = 'none';
-      document.getElementById('fullNotice').style.display = 'block';
-    }
-  };
-  script.src = SCRIPT_URL + '?action=getSlots&callback=handleSlots';
-  document.body.appendChild(script);
-}
+    const script = document.createElement('script');
+    window.handleSlots = function(data) {
+      document.getElementById('slotsCount').textContent = data.availableSlots;
+      if (data.availableSlots <= 0) {
+        document.getElementById('registerBtn').style.display = 'none';
+        document.getElementById('fullNotice').style.display = 'block';
+      }
+    };
+    script.src = SCRIPT_URL + '?action=getSlots&callback=handleSlots';
+    document.body.appendChild(script);
+  }
 
   updateSlots();
   setInterval(updateSlots, 30000);
